@@ -1,0 +1,75 @@
+.editor-container .inp-white{
+  width: 100%;
+}
+.editor-container {
+  /* 이거 색상 input으로..! */
+  display: flex;
+}
+#editor-left {
+  padding: 48px 48px 32px;
+  width: 50%;
+  box-sizing: border-box;
+}
+#editor-tit:focus {
+  outline: none;
+}
+#preview {
+  box-sizing: border-box;
+  padding: 48px;
+  background: #edf5f8;
+  width: 50%;
+}
+.container-list {
+  background: #eee;
+}
+.wrap-list {
+  padding: 32px 48px;
+}
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  list-style: none;
+}
+
+.tool {
+  width: 10px;
+  height: 10px;
+  color: black;
+}
+@media (width >= 1400px) {
+  .wrap-list {
+    padding: 36px 48px;
+  }
+  .list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (width < 992px) {
+  #editor-left,
+  #preview {
+    padding: 32px;
+  }
+  .wrap-list {
+    padding: 32px;
+  }
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (width < 576px) {
+  .editor-container {
+    flex-direction: column;
+  }
+  #editor-left,
+  #preview {
+    padding: 24px;
+    width: 100%;
+  }
+  .wrap-list {
+    padding: 32px 24px;
+  }
+  .list {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,36 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+.noresize {
+  resize: none;
+}
+
+:root {
+  font-size: 10px;
+  --primary-color: #127dff;
+}
+
+/* component */
+.box {
+  padding: 20px 12px;
+  background: #fff;
+  box-shadow: 2px 2px 4px #ccc;
+}
+.btn-primary{
+  border-radius: 4px;
+  padding: 6px;
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.inp-white {
+  border: none;
+  font-size: 2.4rem;
+}

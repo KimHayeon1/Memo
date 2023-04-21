@@ -1,0 +1,76 @@
+#editor-left .editor-tool {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+}
+#editor-left textarea {
+  border: none;
+  min-height: 30vw;
+  overflow: visible;
+  margin-bottom: 24px;
+  font-size: 1.6rem;
+}
+#editor-left textarea:focus {
+  outline: none;
+}
+#editor-left .wrap-bottom {
+  display: flex;
+  justify-content: right;
+  gap: 24px;
+}
+#editor-left .btn-primary {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 12px 32px;
+}
+#editor-left #btn-close {
+  margin-right: auto;
+}
+#editor-left #btn-reset {
+  color: var(--primary-color);
+  background: #e7f2ff;
+}
+
+.memo-tit {
+  color: var(--primary-color);
+  margin-bottom: 32px;
+}
+
+.list {
+  color: #222;
+  line-height: 1.2;
+  font-size: 1.6rem;
+}
+.list ul {
+  list-style-type: disc;
+}
+.list ul, .list ol {
+  padding-left: 28px;
+}
+.list h1 {
+  font-size: 2.6rem;
+}
+.list h2 {
+  font-size: 2.4rem;
+}
+.list h3 {
+  font-size: 2.2rem;
+}
+.list h4 {
+  font-size: 2rem;
+}
+.list h5 {
+  font-size: 1.8rem;
+}
+.list h6 {
+  font-size: inherit;
+}
+.list hr {
+  border: 1px solid #ddd;
+}
+.list pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow: auto;
+}/*# sourceMappingURL=memo-style.css.map */

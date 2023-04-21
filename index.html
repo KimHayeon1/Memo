@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/normalize.css">
+  <link rel="stylesheet" href="style/common.css">
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/memo-style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-io/">
+  <link rel="manifest" href="favicon-io/site.webmanifest">
+  <title>Custom Memo</title>
+</head>
+<body><i class="fa-solid fa-heart"></i>
+  <main>
+    <h1 class="a11y-hidden">커스텀 메모</h1>
+    <div class="editor-container">
+      <!-- header나 nav는 사용하지 않는가? -->
+      <section id="editor-left">
+        <input id="editor-tit" class="inp-white" type="text" placeholder="제목을 입력하세요">
+        <ul class="editor-tool">
+          <li>
+            <button class="tool" type="button">H</button>
+          </li>
+          <li>
+            <button class="tool" id="bold" type="button">B</button>
+          </li>
+          <li>
+            <button class="tool" type="button">I</button>
+          </li>
+          <li>
+            <button class="tool" type="button">T</button>
+          </li>
+        </ul>
+        <textarea class="noresize" placeholder="내용을 입력하세요" name="" id="editor-text"></textarea>
+        <div class="wrap-bottom">
+          <button id="btn-close" type="button">접기</button>
+          <button id="btn-reset" type="button" class="btn-primary">지우기</button>
+          <button id="btn-save" type="button" class="btn-primary">저장</button>
+        </div>
+      </section>
+      <div id="preview">
+        <h1></h1>
+        <p></p>
+      </div>
+    </div>
+    <section class="container-list">
+      <div class="wrap-list">
+        <ul class="list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="index.mjs" type="module"></script>
+</body>
+</html>
