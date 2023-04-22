@@ -1,24 +1,22 @@
-import { parseMd } from "./parseMd.mjs";
+import { parseMd } from "./parse-md.mjs";
 
+const editorTit= document.querySelector('#editor-tit');
 const inpEditor = document.querySelector('#editor-text');
 const preview = document.querySelector('#preview');
 const memoList = document.querySelector('.list');
+const btnReset = document.querySelector('#btn-reset');
 const btnSave = document.querySelector('#btn-save');
-const editorTit= document.querySelector('#editor-tit');
-const previewTit = document.querySelector('#preview h1');
-const previewText = document.querySelector('#preview p');
 const btnBold = document.querySelector('#bold');
-
-btnBold.addEventListener('click', () => {
-  console.log(inpEditor.selectionStart)
-  console.log(inpEditor.selectionEnd)
-  inpEditor.value = inpEditor.value.slice(0, inpEditor.selectionStart) + '** **' + inpEditor.value.slice(inpEditor.selectionStart-1)
-});
 
 const saveMemoList = [];
 inpEditor.addEventListener('input', inpEditorHandle);
 editorTit.addEventListener('input', editorTitHandle);
 btnSave.addEventListener('click', btnSaveHandle);
+btnReset.addEventListener('click', () => {
+  editorTit.value = '';
+  inpEditor.value = '';
+  preview.innerHTML = '';
+})
 
 (function() {
   const getMemoList = JSON.parse(localStorage.getItem('memoList'));
@@ -30,25 +28,46 @@ btnSave.addEventListener('click', btnSaveHandle);
   }
 }())
 
-function inpEditorHandle() {
-  previewText.textContent = inpEditor.value
+btnBold.addEventListener('click', () => {
+  console.log(inpEditor.selectionStart)
+  console.log(inpEditor.selectionEnd)
+  inpEditor.value = inpEditor.value.slice(0, inpEditor.selectionStart) + '** **' + inpEditor.value.slice(inpEditor.selectionStart-1)
+});
+
+function editorTitHandle() {
+  preview.innerHTML = `<h1 class="memo-tit">${editorTit.value}</h1>
+    ${parseMd(inpEditor.value)}`
 }
+
+function inpEditorHandle() {
+  if (editorTit.value) {
+    preview.innerHTML = `<h1 class="memo-tit">${editorTit.value}</h1>
+      ${parseMd(inpEditor.value)}`
+  } else {
+    preview.innerHTML = ` ${parseMd(inpEditor.value)}`
+  }
+  console.log(preview.innerHTML)
+}
+
 function btnSaveHandle() {
-  creatMemo(previewTit.textContent, inpEditor.value);
+  creatMemo(editorTit.value, inpEditor.value);
   saveMeno();
   inpEditor.value = '';
   editorTit.value = '';
-  previewText.textContent = '';
-  previewTit.textContent = '';
+  preview.innerHTML = '';
 }
 function creatMemo(tit, text) {
   const li = document.createElement('li');
   li.className = 'box';
-  li.innerHTML = `
-    <h1 class="memo-tit">${tit}</h1>
+  if(tit) {
+    li.innerHTML = `<h1 class="memo-tit">${tit}</h1>`
+  }
+  li.innerHTML += `
     ${parseMd(text)}
-    <button type="button" class="btn-primary edit">수정</button>
-    <button type="button" class="btn-primary delete">삭제</button>`
+    <div class="wrap-btn">
+      <button type="button" class="btn-primary edit">수정</button>
+      <button type="button" class="btn-primary delete">삭제</button>
+    </div>`
   memoList.appendChild(li)
 
   const btnEdit = li.querySelector('.edit');
@@ -60,20 +79,15 @@ function creatMemo(tit, text) {
 
 function saveMeno() {
   const memo = {
-    tit: previewTit.textContent,
-    text: previewText.textContent
+    tit: editorTit.value,
+    text: inpEditor.value
   }
   saveMemoList.push(memo)
   localStorage.setItem('memoList', JSON.stringify(saveMemoList));
 }
-
-function editorTitHandle() {
-  previewTit.textContent = editorTit.value;
-}
-
 function btnDeleteHandle(event) {
   const i = getIndex(event.currentTarget.parentNode);
-  event.currentTarget.parentNode.remove();
+  event.currentTarget.parentNode.parentNode.remove();
   saveMemoList.splice(i, 1);
   localStorage.setItem('memoList', JSON.stringify(saveMemoList));
 }

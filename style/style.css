@@ -1,26 +1,21 @@
+main {
+  min-height: 100vh;
+  background: #f6f6f6;
+}
+
 .editor-container .inp-white{
   width: 100%;
 }
 .editor-container {
   /* 이거 색상 input으로..! */
   display: flex;
+  min-height: 66vh;
 }
-#editor-left {
+#edit {
+  background: #fff;
   padding: 48px 48px 32px;
   width: 50%;
   box-sizing: border-box;
-}
-#editor-tit:focus {
-  outline: none;
-}
-#preview {
-  box-sizing: border-box;
-  padding: 48px;
-  background: #edf5f8;
-  width: 50%;
-}
-.container-list {
-  background: #eee;
 }
 .wrap-list {
   padding: 32px 48px;
@@ -32,11 +27,6 @@
   list-style: none;
 }
 
-.tool {
-  width: 10px;
-  height: 10px;
-  color: black;
-}
 @media (width >= 1400px) {
   .wrap-list {
     padding: 36px 48px;
@@ -46,7 +36,7 @@
   }
 }
 @media (width < 992px) {
-  #editor-left,
+  #edit,
   #preview {
     padding: 32px;
   }
@@ -61,7 +51,7 @@
   .editor-container {
     flex-direction: column;
   }
-  #editor-left,
+  #edit,
   #preview {
     padding: 24px;
     width: 100%;

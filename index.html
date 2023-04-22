@@ -12,15 +12,16 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-io/">
   <link rel="manifest" href="favicon-io/site.webmanifest">
-  <title>Custom Memo</title>
+  <title>Memo</title>
 </head>
 <body><i class="fa-solid fa-heart"></i>
   <main>
-    <h1 class="a11y-hidden">커스텀 메모</h1>
+    <h1 class="a11y-hidden">메모장</h1>
     <div class="editor-container">
-      <!-- header나 nav는 사용하지 않는가? -->
-      <section id="editor-left">
+      <section id="edit">
+        <h2 class="a11y-hidden">메모 작성하기</h2>
         <input id="editor-tit" class="inp-white" type="text" placeholder="제목을 입력하세요">
+        <!-- header나 nav는 보통 사용하지 않는가? -->
         <ul class="editor-tool">
           <li>
             <button class="tool" type="button">H</button>
@@ -29,10 +30,13 @@
             <button class="tool" id="bold" type="button">B</button>
           </li>
           <li>
-            <button class="tool" type="button">I</button>
+            <button class="tool" id="italic" type="button"><img src="img/italic2.svg" alt="italic"></button>
           </li>
           <li>
-            <button class="tool" type="button">T</button>
+            <button class="tool" id="line-txt" type="button">T</button>
+          </li>
+          <li>
+            <button class="tool" id="link" type="button"><img src="img/link.svg" alt="italic"></button>
           </li>
         </ul>
         <textarea class="noresize" placeholder="내용을 입력하세요" name="" id="editor-text"></textarea>
@@ -42,15 +46,13 @@
           <button id="btn-save" type="button" class="btn-primary">저장</button>
         </div>
       </section>
-      <div id="preview">
-        <h1></h1>
-        <p></p>
-      </div>
+      <section id="preview">
+        <h2 class="a11y-hidden">작성 중인 메모 미리 보기</h2>
+      </section>
     </div>
-    <section class="container-list">
-      <div class="wrap-list">
-        <ul class="list"></ul>
-      </div>
+    <section class="wrap-list">
+      <h2 class="a11y-hidden">저장된 메모 리스트</h2>
+      <ul class="list"></ul>
     </section>
   </main>
 
