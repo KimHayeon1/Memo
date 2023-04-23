@@ -45,18 +45,31 @@
   margin-bottom: 24px;
 }
 .editor-tool .tool {
-  padding: 20px;
+  width: 4.4rem;
+  height: 4.4rem;
+  padding: 1rem;
   font-size: 2.2rem;
   line-height: 1;
+}
+.editor-tool .tool:hover {
+  background: #eee;
 }
 .editor-tool #bold {
   font-weight: 700;
 }
 .editor-tool #italic img {
-  width: 1.5rem;
+  margin-top: 0.3rem;
+  width: 1.4rem;
 }
-.editor-tool #line-txt {
+.editor-tool #strike {
   text-decoration: line-through;
+}
+.editor-tool #link img,
+.editor-tool #code img,
+.editor-tool #quote img,
+.editor-tool #ul img,
+.editor-tool #ol img {
+  height: 100%;
 }
 
 .memo-tit {
@@ -138,7 +151,8 @@
 #preview {
   box-sizing: border-box;
   padding: 48px;
-  background: #edf5f8;
+  border-left: 1px solid #ddd;
+  background: #fff;
   width: 50%;
 }
 #preview h1 {

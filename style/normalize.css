@@ -41,6 +41,9 @@ textarea {
 input {
   border: none;
 }
+img {
+  vertical-align: top;
+}
 /**
  * Render the `main` element consistently in IE.
  */

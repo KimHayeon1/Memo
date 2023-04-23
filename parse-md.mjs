@@ -5,8 +5,8 @@ export function parseMd(md){
   md = md.replace(/[\*\_]{1}([^\*\_\n]+)[\*\_]{1}/g, '<i>$1</i>');
 
   //ul
-  md = md.replace(/((^\*.+\n*)+$)/gm, '<ul>\n$1\n</ul>');
-  md = md.replace(/^\*(.+)/gm, '<li>$1</li>');
+  md = md.replace(/((^\*.*\n*)+$)/gm, '<ul>\n$1\n</ul>');
+  md = md.replace(/^\*(.*)/gm, '<li>$1</li>');
   
   //ol
   md = md.replace(/((^\d\..+\n*)+$)/gm, '<ol>\n$1\n</ol>');
@@ -27,24 +27,24 @@ export function parseMd(md){
   //hr
   md = md.replace(/^-{3,}$/gm, '<hr>');
 
-  //images
+  //img
   // md = md.replace(/\!\[([^\]]+)\]\(([^\)]+)\)/g, '<img src="$2" alt="$1" />');
   
-  //links
+  //link
   md = md.replace(/[\[]{1}([^\]]+)[\]]{1}[\(]{1}([^\)\"]+)(\"(.+)\")?[\)]{1}/g, '<a href="$2" title="$4">$1</a>');
 
-  // ?
+  // del
   md = md.replace(/[\~]{2}([^\~]+)[\~]{2}/g, '<del>$1</del>');
   
   //pre
   md = md.replace(/^\s*\`{3}(\S*)\n([\s\S]*)\`{3}$/gm, '<pre class="$1"><code>$2</code></pre>');
   
   //code
-  md = md.replace(/[\`]{1}([^\`]+)[\`]{1}/g, '<code>$1</code>');
+  md = md.replace(/[\`]{1}([^\`\n]+)[\`]{1}/g, '<code>$1</code>');
   
   //p
   md = md.replace(/^\s*([^\n]+)/gm, function(m){
-    return  /\<(\/)?(hr|h\d|ul|ol|li|blockquote|pre|img)/.test(m) ? m : '<p>'+m+'</p>';
+    return /\<(\/)?(hr|h\d|ul|ol|li|blockquote|pre|img)/.test(m) ? m : '<p>'+m+'</p>';
   });
   
   //strip p from pre

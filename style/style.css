@@ -36,6 +36,9 @@ main {
   }
 }
 @media (width < 992px) {
+  .editor-tool {
+    flex-wrap: wrap;
+  }
   #edit,
   #preview {
     padding: 32px;
@@ -48,13 +51,13 @@ main {
   }
 }
 @media (width < 576px) {
-  .editor-container {
-    flex-direction: column;
-  }
-  #edit,
-  #preview {
+  #edit {
     padding: 24px;
     width: 100%;
+    min-height: 100vw;
+  }
+  #preview {
+    display: none;
   }
   .wrap-list {
     padding: 32px 24px;

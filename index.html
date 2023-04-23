@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style/normalize.css">
   <link rel="stylesheet" href="style/common.css">
-  <link rel="stylesheet" href="style/style.css">
   <link rel="stylesheet" href="style/memo-style.css">
+  <link rel="stylesheet" href="style/style.css">
   <link rel="apple-touch-icon" sizes="180x180" href="favicon-io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-io/">
@@ -24,7 +24,7 @@
         <!-- header나 nav는 보통 사용하지 않는가? -->
         <ul class="editor-tool">
           <li>
-            <button class="tool" type="button">H</button>
+            <button class="tool" id="header" type="button">H</button>
           </li>
           <li>
             <button class="tool" id="bold" type="button">B</button>
@@ -33,10 +33,22 @@
             <button class="tool" id="italic" type="button"><img src="img/italic2.svg" alt="italic"></button>
           </li>
           <li>
-            <button class="tool" id="line-txt" type="button">T</button>
+            <button class="tool" id="strike" type="button">T</button>
           </li>
           <li>
-            <button class="tool" id="link" type="button"><img src="img/link.svg" alt="italic"></button>
+            <button class="tool" id="link" type="button"><img src="img/link.svg" alt="이탤릭"></button>
+          </li>
+          <li>
+            <button class="tool" id="code" type="button"><img src="img/code.svg" alt="코드 블록"></button>
+          </li>
+          <li>
+            <button class="tool" id="quote" type="button"><img src="img/quote.svg" alt="인용문"></button>
+          </li>
+          <li>
+            <button class="tool" id="ul" type="button"><img src="img/ul.svg" alt="인용문"></button>
+          </li>
+          <li>
+            <button class="tool" id="ol" type="button"><img src="img/ol.svg" alt="인용문"></button>
           </li>
         </ul>
         <textarea class="noresize" placeholder="내용을 입력하세요" name="" id="editor-text"></textarea>

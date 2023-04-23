@@ -6,7 +6,7 @@ const preview = document.querySelector('#preview');
 const memoList = document.querySelector('.list');
 const btnReset = document.querySelector('#btn-reset');
 const btnSave = document.querySelector('#btn-save');
-const btnBold = document.querySelector('#bold');
+const tools = document.querySelectorAll('.tool');
 
 const saveMemoList = [];
 inpEditor.addEventListener('input', inpEditorHandle);
@@ -16,27 +16,91 @@ btnReset.addEventListener('click', () => {
   editorTit.value = '';
   inpEditor.value = '';
   preview.innerHTML = '';
-})
+});
+tools.forEach(tool => tool.addEventListener('click', toolHandle));
 
 (function() {
   const getMemoList = JSON.parse(localStorage.getItem('memoList'));
   if (getMemoList) {
     getMemoList.forEach(v => {
-      saveMemoList.push(v)
-      creatMemo(v.tit, v.text)
+      saveMemoList.push(v);
+      creatMemo(v.tit, v.text);
     })
   }
 }())
 
-btnBold.addEventListener('click', () => {
-  console.log(inpEditor.selectionStart)
-  console.log(inpEditor.selectionEnd)
-  inpEditor.value = inpEditor.value.slice(0, inpEditor.selectionStart) + '** **' + inpEditor.value.slice(inpEditor.selectionStart-1)
-});
+const mdlist = new Map([
+  ['header', ['#', '제목', '']],
+  ['bold', ['**', '텍스트', '**']],
+  ['italic', ['_', '텍스트', '_']],
+  ['strike', ['~~', '텍스트', '~~']],
+  ['link', ['[', '링크텍스트', '](URL)']],
+  ['code', ['```\n', '코드를 입력하세요', '\n```']],
+  ['quote', ['>', '인용문', '']],
+  ['ul', ['*', '텍스트', '']],
+  ['ol', ['1.', '텍스트', '']],
+])
+function toolHandle(event) {
+  const key = event.currentTarget.getAttribute('id');
+  addMd(...mdlist.get(key));
+  inpEditorHandle();
+}
+
+function addMd(md1, txt, md2) {
+  const cursorStart = md1.length;
+  const start = inpEditor.selectionStart;
+  const end = inpEditor.selectionEnd;
+  const inp = inpEditor.value;
+  inpEditor.focus();
+
+  if (start === end) {
+    const setStart = start + cursorStart;
+    inpEditor.value = inp.slice(0, start) + md1 + txt + md2 + inp.slice(start);
+    inpEditor.setSelectionRange(setStart, setStart + txt.length);
+    return;
+  }
+
+  const startTxt = inp.slice(0, start);
+  const endTxt = inp.slice(end);
+  const drag = inp.slice(start, end);
+
+  // 드래그 안의 마크다운 중복 시 제거
+  if (drag.includes(md1) && drag.includes(md2)) {
+    let text = drag.replace(md1, '')
+    text = text.replace(md2, '')
+    inpEditor.value = startTxt + text + endTxt;
+    inpEditor.setSelectionRange(start, end- md1.length -md2.length);
+    return;
+  }
+
+  const find = [];
+  mdlist.forEach(v => {
+    if (v[0] === startTxt.slice(startTxt.length - v[0].length) && v[2] === endTxt.slice(0, v[2].length)) {
+      find.push(v[0], v[2])
+    }
+  });
+
+  if (find.length) {
+    // 드래그 양 옆에 마크다운 중복 시 제거
+    if (find[0] === md1 && find[1] === md2) {
+      inpEditor.value = startTxt.slice(0, startTxt.length-find[0].length) + drag + endTxt.slice(find[1].length);
+      inpEditor.setSelectionRange(start-md1.length, end+ md1.length +md2.length);
+      return;
+    } 
+    // 드래그 양옆에 마크다운 삽입
+    inpEditor.value = startTxt + md1 + drag + md2 + endTxt;
+    inpEditor.setSelectionRange(start, end+ md1.length +md2.length);
+    return;
+  }
+  
+  // 드래그 + 마크다운 제거
+  inpEditor.value = startTxt + md1 + drag + md2 + endTxt;
+  inpEditor.setSelectionRange(start+cursorStart, end+cursorStart);
+}
 
 function editorTitHandle() {
   preview.innerHTML = `<h1 class="memo-tit">${editorTit.value}</h1>
-    ${parseMd(inpEditor.value)}`
+    ${parseMd(inpEditor.value)}`;
 }
 
 function inpEditorHandle() {
@@ -46,7 +110,6 @@ function inpEditorHandle() {
   } else {
     preview.innerHTML = ` ${parseMd(inpEditor.value)}`
   }
-  console.log(preview.innerHTML)
 }
 
 function btnSaveHandle() {
@@ -56,6 +119,7 @@ function btnSaveHandle() {
   editorTit.value = '';
   preview.innerHTML = '';
 }
+
 function creatMemo(tit, text) {
   const li = document.createElement('li');
   li.className = 'box';
@@ -85,6 +149,7 @@ function saveMeno() {
   saveMemoList.push(memo)
   localStorage.setItem('memoList', JSON.stringify(saveMemoList));
 }
+
 function btnDeleteHandle(event) {
   const i = getIndex(event.currentTarget.parentNode);
   event.currentTarget.parentNode.parentNode.remove();
