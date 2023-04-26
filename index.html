@@ -54,8 +54,8 @@
         <div class="wrap-bottom">
           <button id="btn-reset" type="button" class="btn-secondary">지우기</button>
           <button id="btn-save" type="button" class="btn-primary">저장</button>
-          <button id="btn-back" type="button" class="btn-secondary">이전으로</button>
-          <button id="btn-edit" type="button" class="btn-primary">수정</button>
+          <button id="btn-back" type="button" class="btn-secondary hidden">이전으로</button>
+          <button id="btn-edit" type="button" class="btn-primary hidden">수정</button>
         </div>
       </section>
       <section id="preview">
@@ -64,7 +64,7 @@
     </div>
     <section class="wrap-list">
       <h2 class="a11y-hidden">저장된 메모 리스트</h2>
-      <div>
+      <div class="wrap-select">
         <label class="a11y-hidden" for="sort-memo">정렬</label>
         <select id="sort-memo">
           <option>최신순</option>
@@ -75,6 +75,6 @@
       <ul class="list"></ul>
     </section>
   </main>
-  <script src="index.mjs" type="module"></script>
+  <script src="/JS/index.mjs" type="module"></script>
 </body>
 </html>

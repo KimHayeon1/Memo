@@ -1,9 +1,6 @@
 main {
   min-height: 100vh;
 }
-.editor-container .inp-white{
-  width: 100%;
-}
 .editor-container {
   display: flex;
   min-height: 66vh;
@@ -18,8 +15,10 @@ main {
   width: 50%;
   box-sizing: border-box;
   #editor-tit {
+    font-weight: 700;
+    width: 100%;
     font-size: 2.8rem;
-    margin-bottom: 24px;
+    margin-bottom: 36px;
   }
   #editor-tit:focus {
     outline: none;
@@ -41,13 +40,8 @@ main {
   }
   .btn-secondary,
   .btn-primary {
-    display: block;
     font-weight: 700;
     padding: 12px 32px;
-  }
-  #btn-edit,
-  #btn-back {
-    display: none;
   }
   #btn-close {
     margin-right: auto;
@@ -56,7 +50,7 @@ main {
 .editor-tool{
   display: flex;
   list-style: none;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   .tool {
     width: 4.4rem;
     height: 4.4rem;
@@ -71,7 +65,7 @@ main {
     font-weight: 700;
   }
   #italic img {
-    margin-top: 0.3rem;
+    margin-top: 0.1rem;
     width: 1.4rem;
   }
   #strike {
@@ -88,7 +82,15 @@ main {
 
 .wrap-list {
   padding: 32px 48px;
-  border-top: 1px solid var(--gray-100);
+  border-top: 1px solid var(--border-gray);
+  .wrap-select {
+    text-align: right;
+    margin-bottom: 24px;
+  }
+  #sort-memo {
+    font-size: 1.2rem;
+    border: none;
+  }
 }
 .list {
   display: grid;
@@ -101,8 +103,9 @@ main {
     flex-direction: column-reverse;
     justify-content: flex-end;
     background: #fff;
-    border: 1px solid var(--gray-100);
-    box-shadow: 2px 2px 4px var(--gray-100);
+    border-radius: 4px;
+    border: 1px solid var(--border-gray);
+    box-shadow: 2px 2px 4px #ddd;
   }
   h1 {
     font-size: 2.2rem;
@@ -119,7 +122,7 @@ main {
   .wrap-btn {
     display: flex;
     font-size: 0;
-    border-bottom: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--border-gray);
   }
   .open,
   .close,
@@ -136,6 +139,7 @@ main {
   }
   .delete {
     background: var(--light-blue-100);
+    border-radius: 0 4px 0 0;
   }
 }
 #preview,

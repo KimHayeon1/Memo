@@ -1,11 +1,11 @@
 /* style */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 10px;
   --primary-color: #0073ff;
-  --gray-100: #ccc;
+  --border-gray: #ccc;
   --light-blue-100: #6fb0ff;
   --secondary-color: #e2f0ff;
 }
@@ -23,11 +23,15 @@
 .noresize {
   resize: none;
 }
+.hidden {
+  display: none;
+}
 
 /* component */
 .btn-primary,
 .btn-secondary {
   padding: 8px 12px;
+  border-radius: 4px;
 }
 .btn-primary {
   background: var(--primary-color);

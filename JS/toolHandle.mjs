@@ -1,6 +1,6 @@
-import { inpEditorHandle } from "./index.mjs";
+import { editorTextHandle } from "./index.mjs";
 
-const inpEditor = document.querySelector('#editor-text');
+const editorText = document.querySelector('#editor-text');
 const mdlist = new Map([
   ['header', ['#', '제목', '']],
   ['bold', ['**', '텍스트', '**']],
@@ -15,30 +15,30 @@ const mdlist = new Map([
 
 export function toolHandle(event) {
   const key = event.currentTarget.getAttribute('id');
-  inpEditor.focus();
-  if (inpEditor.selectionStart === inpEditor.selectionEnd) {
+  editorText.focus();
+  if (editorText.selectionStart === editorText.selectionEnd) {
     cursor(...mdlist.get(key))
   } else {
     drag(...mdlist.get(key))
   }
-  inpEditorHandle();
+  editorTextHandle();
 }
 
 // 부가설명+마크다운 삽입 => 마크다운 총 1개
 function cursor(md1, txt, md2) {
-  const start = inpEditor.selectionStart;
-  const end = inpEditor.selectionEnd;
-  const inp = inpEditor.value;
+  const start = editorText.selectionStart;
+  const end = editorText.selectionEnd;
+  const inp = editorText.value;
   const setStart = start + md1.length;
 
-  inpEditor.value = inp.slice(0, start) + md1 + txt + md2 + inp.slice(end);
-  inpEditor.setSelectionRange(setStart, setStart + txt.length);
+  editorText.value = inp.slice(0, start) + md1 + txt + md2 + inp.slice(end);
+  editorText.setSelectionRange(setStart, setStart + txt.length);
 }
 
 function drag(md1, _, md2) {
-  const start = inpEditor.selectionStart;
-  const end = inpEditor.selectionEnd;
-  const inp = inpEditor.value;
+  const start = editorText.selectionStart;
+  const end = editorText.selectionEnd;
+  const inp = editorText.value;
   const txt1 = inp.slice(0, start);
   const txt2 = inp.slice(end);
   const drag = inp.slice(start, end);
@@ -62,41 +62,41 @@ function drag(md1, _, md2) {
 }
 
 function removeMdFromDrag(md1, md2) {
-  const start = inpEditor.selectionStart;
-  const end = inpEditor.selectionEnd;
-  const inp = inpEditor.value;
+  const start = editorText.selectionStart;
+  const end = editorText.selectionEnd;
+  const inp = editorText.value;
   let text = inp.slice(start, end).replace(md1, '');
   text = text.replace(md2, '');
 
-  inpEditor.value = inp.slice(0, start) + text + inp.slice(end);
-  inpEditor.setSelectionRange(start, end - md1.length - md2.length);
+  editorText.value = inp.slice(0, start) + text + inp.slice(end);
+  editorText.setSelectionRange(start, end - md1.length - md2.length);
 }
 
 function hasMd(md1, md2, has) {
-  const start = inpEditor.selectionStart;
-  const end = inpEditor.selectionEnd;
-  const inp = inpEditor.value;
+  const start = editorText.selectionStart;
+  const end = editorText.selectionEnd;
+  const inp = editorText.value;
   const txt1 = inp.slice(0, start);
   const txt2 = inp.slice(end);
   const drag = inp.slice(start, end);
   
   // 드래그 양 끝에 md 재클릭 시 제거
   if (has[0] === md1 && has[1] === md2) {
-    inpEditor.value = txt1.slice(0, txt1.length-has[0].length) + drag + txt2.slice(has[1].length);
-    inpEditor.setSelectionRange(start-md1.length, end+ md1.length +md2.length);
+    editorText.value = txt1.slice(0, txt1.length-has[0].length) + drag + txt2.slice(has[1].length);
+    editorText.setSelectionRange(start-md1.length, end+ md1.length +md2.length);
     return;
   }
 
   //재클릭이 아니라면 md 추가
-  inpEditor.value = txt1 + md1 + drag + md2 + txt2;
-  inpEditor.setSelectionRange(start, end+ md1.length +md2.length);
+  editorText.value = txt1 + md1 + drag + md2 + txt2;
+  editorText.setSelectionRange(start, end+ md1.length +md2.length);
 }
 
 function addMd(md1, md2) {
-  const start = inpEditor.selectionStart;
-  const end = inpEditor.selectionEnd;
-  const inp = inpEditor.value;
+  const start = editorText.selectionStart;
+  const end = editorText.selectionEnd;
+  const inp = editorText.value;
 
-  inpEditor.value = inp.slice(0, start) + md1 + inp.slice(start, end) + md2 + inp.slice(end);
-  inpEditor.setSelectionRange(start+md1.length, end+md1.length);
+  editorText.value = inp.slice(0, start) + md1 + inp.slice(start, end) + md2 + inp.slice(end);
+  editorText.setSelectionRange(start+md1.length, end+md1.length);
 }
