@@ -15,7 +15,7 @@ export function parseMd(md){
   // blockquote
   md = md.replace(/^\>(.+)/gm, '<blockquote>$1</blockquote>');
   
-  //h (왜 m을 빼면 안 될까?)
+  //h
   md = md.replace(/^[\#]{3}([^\#\n]+)/gm, '<h3>$1</h3>');
   md = md.replace(/^[\#]{2}([^\#\n]+)/gm, '<h2>$1</h2>');
   md = md.replace(/^[\#]{1}([^\#\n]+)/gm, '<h1>$1</h1>');
@@ -37,7 +37,7 @@ export function parseMd(md){
   md = md.replace(/[\~]{2}([^\~]+)[\~]{2}/g, '<del>$1</del>');
   
   //pre
-  md = md.replace(/^\s*\`{3}(\S*)\n([\s\S]*)\`{3}$/gm, '<pre class="$1"><code>$2</code></pre>');
+  md = md.replace(/^\s*\`{3}(\S*)\n([^\`{3}]*)\`{3}$/gm, '<pre class="$1"><code>$2</code></pre>');
   
   //code
   md = md.replace(/[\`]{1}([^\`\n]+)[\`]{1}/g, '<code>$1</code>');

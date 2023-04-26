@@ -14,14 +14,13 @@
   <link rel="manifest" href="favicon-io/site.webmanifest">
   <title>Memo</title>
 </head>
-<body><i class="fa-solid fa-heart"></i>
+<body>
   <main>
     <h1 class="a11y-hidden">메모장</h1>
     <div class="editor-container">
       <section id="edit">
         <h2 class="a11y-hidden">메모 작성하기</h2>
         <input id="editor-tit" class="inp-white" type="text" placeholder="제목을 입력하세요">
-        <!-- header나 nav는 보통 사용하지 않는가? -->
         <ul class="editor-tool">
           <li>
             <button class="tool" id="header" type="button">H</button>
@@ -53,9 +52,10 @@
         </ul>
         <textarea class="noresize" placeholder="내용을 입력하세요" name="" id="editor-text"></textarea>
         <div class="wrap-bottom">
-          <button id="btn-close" type="button">접기</button>
-          <button id="btn-reset" type="button" class="btn-primary">지우기</button>
+          <button id="btn-reset" type="button" class="btn-secondary">지우기</button>
           <button id="btn-save" type="button" class="btn-primary">저장</button>
+          <button id="btn-back" type="button" class="btn-secondary">이전으로</button>
+          <button id="btn-edit" type="button" class="btn-primary">수정</button>
         </div>
       </section>
       <section id="preview">
@@ -64,10 +64,17 @@
     </div>
     <section class="wrap-list">
       <h2 class="a11y-hidden">저장된 메모 리스트</h2>
+      <div>
+        <label class="a11y-hidden" for="sort-memo">정렬</label>
+        <select id="sort-memo">
+          <option>최신순</option>
+          <option>오래된순</option>
+        </select>
+      </div>
+
       <ul class="list"></ul>
     </section>
   </main>
-
   <script src="index.mjs" type="module"></script>
 </body>
 </html>
