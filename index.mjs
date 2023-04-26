@@ -1,5 +1,5 @@
-import { parseMd } from "./parse-md.mjs";
-import { toolHandle } from "./toolHandle.mjs";
+import { parseMd } from "parse-md.mjs";
+import { toolHandle } from "toolHandle.mjs";
 
 const editorTit= document.querySelector('#editor-tit');
 const tools = document.querySelectorAll('.tool');

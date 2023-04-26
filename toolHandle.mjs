@@ -1,4 +1,4 @@
-import { editorTextHandle } from "./index.mjs";
+import { editorTextHandle } from "index.mjs";
 
 const editorText = document.querySelector('#editor-text');
 const mdlist = new Map([
