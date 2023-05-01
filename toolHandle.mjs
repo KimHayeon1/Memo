@@ -14,16 +14,18 @@ const mdlist = new Map([
 ])
 
 export function toolHandle(event) {
-  const key = event.currentTarget.getAttribute('id');
   editorText.focus();
+  changeEditorText(event.currentTarget.getAttribute('id'))
+  editorTextHandle();
+}
+
+function changeEditorText(key) {
   if (editorText.selectionStart === editorText.selectionEnd) {
     cursor(...mdlist.get(key))
   } else {
     drag(...mdlist.get(key))
   }
-  editorTextHandle();
 }
-
 // 부가설명+마크다운 삽입 => 마크다운 총 1개
 function cursor(md1, txt, md2) {
   const start = editorText.selectionStart;

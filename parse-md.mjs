@@ -1,6 +1,7 @@
 export function parseMd(md){
   //strong
-  md = md.replace(/[\*\_]{2}([^\*\_]+)[\*\_]{2}/g, '<strong>$1</strong>');
+  md = md.replace(/[\*]{2}([^\*]+)[\*]{2}/g, '<strong>$1</strong>');
+  md = md.replace(/[\_]{2}([^\_]+)[\_]{2}/g, '<strong>$1</strong>');
   // italic
   md = md.replace(/[\*\_]{1}([^\*\_\n]+)[\*\_]{1}/g, '<i>$1</i>');
 

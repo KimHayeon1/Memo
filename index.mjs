@@ -109,6 +109,11 @@ function beforeUnload(target) {
   }
 }
 export function editorTextHandle() {
+  renderPreview()
+  beforeUnload(editorText.value);
+}
+  
+function renderPreview() {
   if (editorTit.value) {
     preview.innerHTML = 
       `<h1 class="memo-tit">${editorTit.value}</h1>
@@ -116,7 +121,6 @@ export function editorTextHandle() {
   } else {
     preview.innerHTML = `${parseMd(editorText.value)}`;
   }
-  beforeUnload(editorText.value);
 }
 
 function saveBtnHandle() {
