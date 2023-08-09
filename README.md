@@ -1,5 +1,5 @@
 # 메모장
-배포 URL(https://kimhayeon1.github.io/Memo/)
+[배포 URL](https://kimhayeon1.github.io/Memo/)
 <br>
 ## 기능
 ### Edit
