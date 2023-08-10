@@ -1,79 +1,153 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style/normalize.css">
-  <link rel="stylesheet" href="style/common.css">
-  <link rel="stylesheet" href="style/style.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-io/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-io/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-io/">
-  <link rel="manifest" href="img/favicon-io/site.webmanifest">
-  <title>Memo</title>
-</head>
-<body>
-  <main>
-    <h1 class="a11y-hidden">메모장</h1>
-    <div class="editor-container">
-      <section id="edit">
-        <h2 class="a11y-hidden">메모 작성하기</h2>
-        <input id="editor-tit" class="inp-white" type="text" placeholder="제목을 입력하세요">
-        <ul class="editor-tool">
-          <li>
-            <button class="tool" id="header" type="button">H</button>
-          </li>
-          <li>
-            <button class="tool" id="bold" type="button">B</button>
-          </li>
-          <li>
-            <button class="tool" id="italic" type="button"><img src="img/italic2.svg" alt="italic"></button>
-          </li>
-          <li>
-            <button class="tool" id="strike" type="button">T</button>
-          </li>
-          <li>
-            <button class="tool" id="link" type="button"><img src="img/link.svg" alt="이탤릭"></button>
-          </li>
-          <li>
-            <button class="tool" id="code" type="button"><img src="img/code.svg" alt="코드 블록"></button>
-          </li>
-          <li>
-            <button class="tool" id="quote" type="button"><img src="img/quote.svg" alt="인용문"></button>
-          </li>
-          <li>
-            <button class="tool" id="ul" type="button"><img src="img/ul.svg" alt="인용문"></button>
-          </li>
-          <li>
-            <button class="tool" id="ol" type="button"><img src="img/ol.svg" alt="인용문"></button>
-          </li>
-        </ul>
-        <textarea class="noresize" placeholder="내용을 입력하세요" name="" id="editor-text"></textarea>
-        <div class="wrap-bottom">
-          <button id="btn-reset" type="button" class="btn-secondary">지우기</button>
-          <button id="btn-save" type="button" class="btn-primary">저장</button>
-          <button id="btn-back" type="button" class="btn-secondary hidden">이전으로</button>
-          <button id="btn-edit" type="button" class="btn-primary hidden">수정</button>
-        </div>
-      </section>
-      <section id="preview">
-        <h2 class="a11y-hidden">작성 중인 메모 미리 보기</h2>
-      </section>
-    </div>
-    <section class="wrap-list">
-      <h2 class="a11y-hidden">저장된 메모 리스트</h2>
-      <div class="wrap-select">
-        <label class="a11y-hidden" for="sort-memo">정렬</label>
-        <select id="sort-memo">
-          <option>최신순</option>
-          <option>오래된순</option>
-        </select>
-      </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <ul class="list"></ul>
-    </section>
-  </main>
-  <script src="index.mjs" type="module"></script>
-</body>
+    <meta name="keywords" content="vending machine, shopping mall" />
+    <meta
+      name="description"
+      content="마크다운 언어로 작성하고 저장할 수 있는 메모장"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="메모장" />
+    <meta property="og:title" content="[메모] 웹 마크다운 메모장" />
+    <meta
+      property="og:description"
+      content="마크다운 언어로 작성하고 저장할 수 있는 메모장"
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/KimHayeon1/Memo/img/og.png"
+    />
+    <meta property="og:url" content="https://kimhayeon1.github.io/Memo/" />
+    <meta property="og:locale" content="ko-KR" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="메모장" />
+    <meta property="twitter:title" content="[메모] 웹 마크다운 메모장" />
+    <meta
+      property="twitter:description"
+      content="마크다운 언어로 작성하고 저장할 수 있는 메모장"
+    />
+    <meta
+      property="twitter:image"
+      content="https://raw.githubusercontent.com/KimHayeon1/Memo/img/og.png"
+    />
+    <meta property="twitter:url" content="https://kimhayeon1.github.io/Memo/" />
+
+    <link rel="stylesheet" href="style/normalize.css" />
+    <link rel="stylesheet" href="style/common.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img/favicon-io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img/favicon-io/favicon-32x32.png"
+    />
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-io/" />
+    <link rel="/manifest" href="img/favicon-io/site.webmanifest" />
+    <title>Memo</title>
+  </head>
+  <body>
+    <main>
+      <h1 class="a11y-hidden">메모장</h1>
+      <div class="editor-container">
+        <section id="edit">
+          <h2 class="a11y-hidden">메모 작성하기</h2>
+          <input
+            id="editor-tit"
+            class="inp-white"
+            type="text"
+            placeholder="제목을 입력하세요"
+          />
+          <ul class="editor-tool">
+            <li>
+              <button class="tool" id="header" type="button">H</button>
+            </li>
+            <li>
+              <button class="tool" id="bold" type="button">B</button>
+            </li>
+            <li>
+              <button class="tool" id="italic" type="button">
+                <img src="img/italic2.svg" alt="italic" />
+              </button>
+            </li>
+            <li>
+              <button class="tool" id="strike" type="button">T</button>
+            </li>
+            <li>
+              <button class="tool" id="link" type="button">
+                <img src="img/link.svg" alt="이탤릭" />
+              </button>
+            </li>
+            <li>
+              <button class="tool" id="code" type="button">
+                <img src="img/code.svg" alt="코드 블록" />
+              </button>
+            </li>
+            <li>
+              <button class="tool" id="quote" type="button">
+                <img src="img/quote.svg" alt="인용문" />
+              </button>
+            </li>
+            <li>
+              <button class="tool" id="ul" type="button">
+                <img src="img/ul.svg" alt="인용문" />
+              </button>
+            </li>
+            <li>
+              <button class="tool" id="ol" type="button">
+                <img src="img/ol.svg" alt="인용문" />
+              </button>
+            </li>
+          </ul>
+          <textarea
+            class="noresize"
+            placeholder="내용을 입력하세요"
+            name=""
+            id="editor-text"
+          ></textarea>
+          <div class="wrap-bottom">
+            <button id="btn-reset" type="button" class="btn-secondary">
+              지우기
+            </button>
+            <button id="btn-save" type="button" class="btn-primary">
+              저장
+            </button>
+            <button id="btn-back" type="button" class="btn-secondary hidden">
+              이전으로
+            </button>
+            <button id="btn-edit" type="button" class="btn-primary hidden">
+              수정
+            </button>
+          </div>
+        </section>
+        <section id="preview">
+          <h2 class="a11y-hidden">작성 중인 메모 미리 보기</h2>
+        </section>
+      </div>
+      <section class="wrap-list">
+        <h2 class="a11y-hidden">저장된 메모 리스트</h2>
+        <div class="wrap-select">
+          <label class="a11y-hidden" for="sort-memo">정렬</label>
+          <select id="sort-memo">
+            <option>최신순</option>
+            <option>오래된순</option>
+          </select>
+        </div>
+
+        <ul class="list"></ul>
+      </section>
+    </main>
+    <script src="index.mjs" type="module"></script>
+  </body>
 </html>
