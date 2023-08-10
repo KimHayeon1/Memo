@@ -1,0 +1,24 @@
+{
+  "name": "memo",
+  "version": "1.0.0",
+  "description": "메모장",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass scss/style.scss src/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KimHayeon1/Memo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KimHayeon1/Memo/issues"
+  },
+  "homepage": "https://github.com/KimHayeon1/Memo#readme",
+  "dependencies": {
+    "node-sass": "^9.0.0"
+  }
+}

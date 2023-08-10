@@ -47,7 +47,7 @@ main {
     margin-right: auto;
   }
 }
-.editor-tool{
+.editor-tool {
   display: flex;
   list-style: none;
   margin-bottom: 16px;
@@ -97,7 +97,7 @@ main {
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   list-style: none;
-  
+
   .box {
     display: flex;
     flex-direction: column-reverse;
@@ -147,13 +147,18 @@ main {
   color: #222;
   line-height: 1.6;
   font-size: 1.6rem;
-  h1,h2,h3,h4, pre {
+  h1,
+  h2,
+  h3,
+  h4,
+  pre {
     margin-top: 0;
   }
   ul {
     list-style-type: disc;
   }
-  ul, ol {
+  ul,
+  ol {
     padding-left: 28px;
     line-height: 2;
   }
@@ -180,7 +185,7 @@ main {
     border-radius: 2px;
   }
   blockquote {
-    width: calc(100%);
+    width: 100%;
     box-sizing: border-box;
     padding: 12px;
     margin: 12px 0;
@@ -200,7 +205,7 @@ main {
     font-size: 2.4rem;
   }
   h3 {
-    font-size: 2.0rem;
+    font-size: 2rem;
   }
 }
 
@@ -216,7 +221,7 @@ main {
 }
 
 // media
-@media (width >= 1400px) {
+@media (min-width: 1400px) {
   .wrap-list {
     padding: 36px 48px;
   }
@@ -224,7 +229,7 @@ main {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-@media (width < 992px) {
+@media (max-width: 992px) {
   .editor-tool {
     flex-wrap: wrap;
   }
@@ -239,7 +244,7 @@ main {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (width < 576px) {
+@media (max-width: 576px) {
   #edit {
     padding: 24px;
     width: 100%;
