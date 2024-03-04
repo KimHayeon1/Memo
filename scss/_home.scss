@@ -124,20 +124,24 @@ main {
     font-size: 0;
     border-bottom: 1px solid var(--border-gray);
   }
-  .open,
-  .close,
-  .edit,
-  .delete {
+
+  @mixin tool {
     width: 32px;
     padding: 8px;
   }
   .open {
+    @include tool;
     display: none;
   }
+  .close {
+    @include tool;
+  }
   .edit {
+    @include tool;
     margin-left: auto;
   }
   .delete {
+    @include tool;
     background: var(--light-blue-100);
     border-radius: 0 4px 0 0;
   }
