@@ -140,17 +140,20 @@ main {
     display: flex;
     font-size: 0;
     border-bottom: 1px solid var(--border-gray); }
-  .list .open,
-  .list .close,
-  .list .edit,
-  .list .delete {
+  .list .open {
+    width: 32px;
+    padding: 8px;
+    display: none; }
+  .list .close {
     width: 32px;
     padding: 8px; }
-  .list .open {
-    display: none; }
   .list .edit {
+    width: 32px;
+    padding: 8px;
     margin-left: auto; }
   .list .delete {
+    width: 32px;
+    padding: 8px;
     background: var(--light-blue-100);
     border-radius: 0 4px 0 0; }
 
